@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.time.ZonedDateTime
 import java.util.Collections.emptyList
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/v1/posts")
@@ -24,7 +25,7 @@ class PostController(
     }
 
     @PostMapping
-    fun createPost(@RequestBody form: PostForm): PostDto {
-        return postService.createPost(authorId = DUMMY_REQUESTER_ID, form)
+    fun createPost(@RequestBody @Valid form: PostForm): PostDto {
+        return postService.createPost(requesterId = DUMMY_REQUESTER_ID, form)
     }
 }

@@ -7,10 +7,20 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.Index
 import javax.persistence.OneToMany
 import javax.persistence.OrderBy
+import javax.persistence.Table
 
 @Entity
+@Table(
+    indexes = [
+        Index(
+            name = "idx_post_author_id_01",
+            columnList = "author_id,id",
+        ),
+    ],
+)
 class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +45,7 @@ class Post(
 ) {
     fun addSlide(slide: PostSlide) {
         slides.add(slide)
+        ++slidesCount
         slide.post = this
     }
 }

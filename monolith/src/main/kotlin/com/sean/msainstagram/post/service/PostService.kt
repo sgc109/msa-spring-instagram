@@ -1,20 +1,20 @@
 package com.sean.msainstagram.post.service
 
 import com.sean.msainstagram.post.domain.Post
-import com.sean.msainstagram.post.domain.PostRepository
 import com.sean.msainstagram.post.domain.PostSlide
 import com.sean.msainstagram.post.dto.Converters.toDto
 import com.sean.msainstagram.post.dto.PostDto
 import com.sean.msainstagram.post.dto.PostForm
 import com.sean.msainstagram.post.dto.PostSlideForm
+import com.sean.msainstagram.post.repository.PostRepository
 import org.springframework.stereotype.Service
 
 @Service
 class PostService(
     private val postRepository: PostRepository,
 ) {
-    fun createPost(authorId: Long, form: PostForm): PostDto {
-        val created = postRepository.save(form.toEntity(authorId))
+    fun createPost(requesterId: Long, form: PostForm): PostDto {
+        val created = postRepository.save(form.toEntity(authorId = requesterId))
         return created.toDto()
     }
 

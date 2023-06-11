@@ -10,6 +10,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
+// TODO: maybe @Value would be more natural?
 @Entity
 class PostSlide(
     @Id

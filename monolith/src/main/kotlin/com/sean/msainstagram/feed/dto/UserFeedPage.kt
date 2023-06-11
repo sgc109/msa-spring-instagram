@@ -4,5 +4,5 @@ import com.sean.msainstagram.post.dto.PostDto
 
 data class UserFeedPage(
     val posts: List<PostDto>,
-    val nextPageKey: Long?,
+    val nextMaxId: Long?,
 )

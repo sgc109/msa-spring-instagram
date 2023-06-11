@@ -1,5 +1,6 @@
-package com.sean.msainstagram.post.domain
+package com.sean.msainstagram.post.repository
 
+import com.sean.msainstagram.post.domain.Post
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query

@@ -20,9 +20,13 @@ repositories {
 dependencies {
 	val queryDslVersion = "5.0.0"
 
+	// Kotlin
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+
 	// Spring
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	// Swagger

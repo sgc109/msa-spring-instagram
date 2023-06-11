@@ -11,27 +11,26 @@ import javax.persistence.Table
 
 @Entity
 @Table(
-    name = "user_like",
     indexes = [
         Index(
-            name = "uk_user_like_target_id_target_type_liker_id",
-            columnList = "target_id,target_type,liker_id",
+            name = "uk_like_count_target_id_target_type",
+            columnList = "target_id,target_type",
             unique = true,
         ),
     ],
 )
-class Like(
+class LikeCount(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
     @Column(nullable = false)
-    var likerId: Long = 0,
+    var targetId: Long,
 
     @Column(nullable = false)
-    var targetId: Long = 0,
+    var targetType: LikeTargetType,
 
     @Column(nullable = false)
-    var targetType: LikeTargetType = LikeTargetType.POST
+    var count: Long = 0
 ) {
 }

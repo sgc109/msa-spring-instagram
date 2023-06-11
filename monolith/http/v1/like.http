@@ -1,0 +1,11 @@
+### like post
+POST {{host}}/api/v1/likes/1/like
+Content-Type: application/json
+
+{}
+
+### unlike post
+POST {{host}}/api/v1/likes/1/unlike
+Content-Type: application/json
+
+{}

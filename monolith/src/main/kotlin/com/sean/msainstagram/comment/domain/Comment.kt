@@ -8,23 +8,24 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Comment {
+class Comment(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0
+    var id: Long = 0,
 
     @Column
-    var parentId: Long? = null
+    val parentId: Long? = null,
 
     @Column(nullable = false)
-    var authorId: Long = 0
+    val authorId: Long,
 
     @Column(nullable = false)
-    var targetId: Long = 0
+    val targetId: Long,
 
     @Column(length = 1000, nullable = false)
-    var text: String = ""
+    var text: String,
 
-    @Column(nullable = false)
-    var createdAt: ZonedDateTime = ZonedDateTime.now()
+    @Column(nullable = false, updatable = false)
+    val createdAt: ZonedDateTime = ZonedDateTime.now(),
+) {
 }

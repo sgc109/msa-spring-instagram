@@ -1,0 +1,22 @@
+### add comment
+POST {{host}}/api/v1/comments/1/add
+Content-Type: application/json
+
+{
+  "comment_text": "hi"
+}
+
+### add thread comment
+POST {{host}}/api/v1/comments/1/add
+Content-Type: application/json
+
+{
+  "comment_text": "hi",
+  "replied_to_comment_id": 1
+}
+
+### delete comment
+POST {{host}}/api/v1/comments/1/delete/1
+Content-Type: application/json
+
+{}
