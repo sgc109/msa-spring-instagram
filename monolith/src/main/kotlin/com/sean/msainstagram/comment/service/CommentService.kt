@@ -6,10 +6,13 @@ import com.sean.msainstagram.comment.domain.CommentTargetType
 import com.sean.msainstagram.comment.dto.CommentDto
 import com.sean.msainstagram.comment.dto.CommentForm
 import com.sean.msainstagram.comment.dto.Converters.toDto
+import com.sean.msainstagram.comment.event.CommentCreated
+import com.sean.msainstagram.comment.event.CommentDeleted
 import com.sean.msainstagram.comment.repository.CommentCountRepository
 import com.sean.msainstagram.comment.repository.CommentRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -19,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional
 class CommentService(
     private val commentRepository: CommentRepository,
     private val commentCountRepository: CommentCountRepository,
+    private val eventPublisher: ApplicationEventPublisher,
 ) {
     @Transactional
     fun addComment(requesterId: Long, postId: Long, form: CommentForm): CommentDto {
@@ -34,6 +38,7 @@ class CommentService(
         }
 
         val created = commentRepository.save(form.toEntity(authorId = requesterId, postId = postId))
+        eventPublisher.publishEvent(CommentCreated(aggregateId = created.id))
 
         increasePostCommentCountBy(postId = postId, inc = 1)
 
@@ -52,6 +57,9 @@ class CommentService(
         if (comment.authorId != requesterId) {
             throw IllegalArgumentException("You cannot delete other's comment.")
         }
+
+        commentRepository.deleteById(commentId)
+        eventPublisher.publishEvent(CommentDeleted(aggregateId = commentId))
 
         increasePostCommentCountBy(postId = postId, inc = -1)
 

@@ -4,10 +4,13 @@ import com.sean.msainstagram.like.domain.Like
 import com.sean.msainstagram.like.domain.LikeCount
 import com.sean.msainstagram.like.dto.LikeInfo
 import com.sean.msainstagram.like.dto.LikeTargetType
+import com.sean.msainstagram.like.event.LikeCreated
+import com.sean.msainstagram.like.event.LikeDeleted
 import com.sean.msainstagram.like.repository.LikeCountRepository
 import com.sean.msainstagram.like.repository.LikeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional
 class LikeService(
     private val likeRepository: LikeRepository,
     private val likeCountRepository: LikeCountRepository,
+    private val eventPublisher: ApplicationEventPublisher,
 ) {
     @Transactional
     fun like(requesterId: Long, targetId: Long, targetType: LikeTargetType) {
@@ -28,6 +32,7 @@ class LikeService(
 
         try {
             likeRepository.save(newEntity)
+            eventPublisher.publishEvent(LikeCreated(aggregateId = newEntity.id))
         } catch (ex: Exception) {
             throw IllegalArgumentException("Cannot like same ${targetType.name} multiple times.")
         }
@@ -45,11 +50,15 @@ class LikeService(
 
     @Transactional
     fun unlike(requesterId: Long, targetId: Long, targetType: LikeTargetType) {
-        try {
-            likeRepository.deleteByTargetIdAndTargetType(targetId, targetType)
-        } catch (ex: Exception) {
-            throw IllegalArgumentException("Cannot unlike ${targetType.name} which is not liked yet")
-        }
+        val entityToDel = likeRepository.findAllByLikerIdAndTargetTypeAndTargetIdIn(
+            likerId = requesterId,
+            targetType = targetType,
+            targetIds = listOf(targetId)
+        ).firstOrNull()
+            ?: throw IllegalArgumentException("Cannot unlike ${targetType.name} which is not liked yet")
+
+        likeRepository.deleteById(entityToDel.id)
+        eventPublisher.publishEvent(LikeDeleted(aggregateId = entityToDel.id))
 
         val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(targetId, targetType)?.apply {
             count -= 1
