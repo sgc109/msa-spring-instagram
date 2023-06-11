@@ -1,0 +1,2 @@
+### get feeds
+GET {{host}}/api/v1/feed/user/1

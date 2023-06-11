@@ -1,0 +1,18 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:

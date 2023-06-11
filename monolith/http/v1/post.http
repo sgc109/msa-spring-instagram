@@ -1,0 +1,15 @@
+### create post
+POST {{host}}/api/v1/posts
+Content-Type: application/json
+
+{
+  "description": "test",
+  "slides": [
+    {
+      "image_url": "https://dummy1.png"
+    },
+    {
+      "image_url": "https://dummy2.png"
+    }
+  ]
+}
