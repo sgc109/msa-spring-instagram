@@ -1,7 +1,6 @@
 # msa-spring-instagram
 
-Simplified clone of Instagram back-end system in both monolith version and microservices architecture(MSA) version(
-msa).
+Simplified clone of Instagram back-end system in both monolith version and microservices architecture(MSA) version(msa).
 
 Every server application is implemented with Spring Boot as a framework and Kotlin as a language.
 
