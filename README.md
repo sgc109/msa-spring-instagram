@@ -9,6 +9,12 @@ Spring MVC).
 
 (TODO: Add system diagrams for each monolith and MSA generated with PlantUML)
 
+## Directories
+
+> ├── monolith =>  Monolith version of instagram server system (developing)  
+> ├── msa =>  MSA version (not start to develop yet)  
+> └── uml
+
 ## APIs
 
 * Most of the APIs were implements by analyzing the URL and parameters of the actual APIs of Instagram(Of course, some
