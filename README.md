@@ -11,9 +11,14 @@ Spring MVC).
 
 ## Directories
 
-> ├── monolith =>  Monolith version of instagram server system (developing)  
-> ├── msa =>  MSA version (not start to develop yet)  
-> └── uml
+```
+/monolith
+  ㄴ Monolith version of instagram server system (developing)
+/msa
+  ㄴ MSA version (not start to develop yet)
+/uml
+  ㄴ PlantUML files
+```
 
 ## APIs
 
