@@ -1,2 +1,5 @@
 ### get user's feed
-GET {{host}}/api/v1/feed/user/1
+GET {{host}}/api/v1/feed/user/1?max_id=9999
+
+### get my saved posts feed
+GET {{host}}/api/v1/feed/saved/posts?max_id=9999

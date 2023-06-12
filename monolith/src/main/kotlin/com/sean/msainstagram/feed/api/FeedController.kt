@@ -3,6 +3,7 @@ package com.sean.msainstagram.feed.api
 import com.sean.msainstagram.comment.entity.CommentTargetType
 import com.sean.msainstagram.comment.service.CommentService
 import com.sean.msainstagram.common.DUMMY_REQUESTER_ID
+import com.sean.msainstagram.feed.dto.SavedPostsFeedPage
 import com.sean.msainstagram.feed.dto.UserFeedPage
 import com.sean.msainstagram.feed.service.FeedService
 import com.sean.msainstagram.like.dto.LikeInfo
@@ -63,6 +64,12 @@ class FeedController(
             }
 
         feedPage.copy(medias = postsWithLikeInfoAndCommentCount)
+    }
+
+    @GetMapping("/saved/posts")
+    override fun getSavedPostsFeed(maxId: Long?): SavedPostsFeedPage {
+        // TODO: implement saved post by aggregating saveService and mediaService
+        return SavedPostsFeedPage(items = emptyList(), moreAvailable = false)
     }
 
     private suspend fun fetchLikeInfosAsync(mediaIds: List<Long>, requesterId: Long): List<LikeInfo> {
