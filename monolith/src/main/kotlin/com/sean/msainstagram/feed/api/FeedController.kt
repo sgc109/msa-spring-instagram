@@ -34,7 +34,7 @@ class FeedController(
         val feedPage = feedService.getUserFeed(
             authorId = userId,
             pageSize = count ?: DEFAULT_PAGE_SIZE,
-            firstId = maxId
+            firstId = maxId,
         )
 
         val originalPosts = feedPage.medias
@@ -76,7 +76,7 @@ class FeedController(
     private suspend fun fetchCommentCountAsync(mediaIds: List<Long>): List<Long> {
         return commentService.batchGetCommentCounts(
             targetType = CommentTargetType.POST,
-            targetIds = mediaIds
+            targetIds = mediaIds,
         )
     }
 

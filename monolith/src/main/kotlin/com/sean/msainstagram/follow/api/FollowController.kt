@@ -23,7 +23,7 @@ class FollowController(
         try {
             friendshipService.makeFriendship(
                 requesterId = requesterId,
-                targetUserId = userId
+                targetUserId = userId,
             )
         } catch (ex: DataIntegrityViolationException) {
             if (ex.cause !is ConstraintViolationException) {
@@ -40,7 +40,7 @@ class FollowController(
 
         friendshipService.breakFriendship(
             requesterId = requesterId,
-            targetUserId = userId
+            targetUserId = userId,
         )
     }
 

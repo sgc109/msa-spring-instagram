@@ -14,11 +14,9 @@ class FriendshipEventListener(
 ) {
     @TransactionalEventListener(CommentCreated::class)
     fun listenFriendshipCreated(event: FriendshipCreated) {
-
     }
 
     @TransactionalEventListener(CommentDeleted::class)
     fun listenFriendshipDeleted(event: FriendshipDeleted) {
-
     }
 }

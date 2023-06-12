@@ -32,6 +32,5 @@ class Like(
     var targetId: Long = 0,
 
     @Column(nullable = false)
-    var targetType: LikeTargetType = LikeTargetType.POST
-) {
-}
+    var targetType: LikeTargetType = LikeTargetType.POST,
+)

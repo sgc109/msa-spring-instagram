@@ -14,7 +14,6 @@ import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-
 @Service
 @Transactional(readOnly = true)
 class LikeService(
@@ -49,7 +48,7 @@ class LikeService(
         val entityToDel = likeRepository.findAllByLikerIdAndTargetTypeAndTargetIdIn(
             likerId = requesterId,
             targetType = targetType,
-            targetIds = listOf(targetId)
+            targetIds = listOf(targetId),
         ).firstOrNull()
             ?: throw IllegalArgumentException("Cannot unlike ${targetType.name} which is not liked yet")
 
@@ -60,7 +59,7 @@ class LikeService(
             count -= 1
         } ?: LikeCount(
             targetId = targetId,
-            targetType = LikeTargetType.POST
+            targetType = LikeTargetType.POST,
         )
 
         likeCountRepository.save(likeCount)

@@ -10,6 +10,4 @@ class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var userId: Long = 0
-
-
 }

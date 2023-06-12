@@ -16,15 +16,13 @@ class CollectionController(
 ) {
     @PostMapping("/create")
     fun createCollection(@RequestBody form: CollectionForm) {
-
     }
 
     @PostMapping("/{collectionId}/edit")
     fun editCollection(
         @PathVariable collectionId: Long,
-        @RequestBody form: UpdateCollectionForm
+        @RequestBody form: UpdateCollectionForm,
     ) {
-
     }
 
     @PostMapping("/{collectionId}/delete")

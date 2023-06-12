@@ -28,7 +28,7 @@ class CommentController(
     @PostMapping("/comments/{mediaId}/add")
     fun addComment(
         @PathVariable mediaId: Long,
-        @RequestBody @Valid form: CommentForm
+        @RequestBody @Valid form: CommentForm,
     ): CreateCommentResponse {
         return commentService.addComment(requesterId = DUMMY_REQUESTER_ID, mediaId = mediaId, form = form)
             .toResponse()
@@ -42,7 +42,7 @@ class CommentController(
         commentService.deleteComment(
             requesterId = DUMMY_REQUESTER_ID,
             mediaId = mediaId,
-            commentId = commentId
+            commentId = commentId,
         )
     }
 

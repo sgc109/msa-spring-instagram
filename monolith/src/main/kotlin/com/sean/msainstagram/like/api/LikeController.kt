@@ -23,7 +23,7 @@ class LikeController(
             likeService.like(
                 requesterId = DUMMY_REQUESTER_ID,
                 targetType = LikeTargetType.POST,
-                targetId = targetId
+                targetId = targetId,
             )
         } catch (ex: DataIntegrityViolationException) {
             if (ex.cause !is ConstraintViolationException) {
@@ -38,17 +38,15 @@ class LikeController(
         likeService.unlike(
             requesterId = DUMMY_REQUESTER_ID,
             targetType = LikeTargetType.POST,
-            targetId = targetId
+            targetId = targetId,
         )
     }
 
     @PostMapping("/comments/like/{targetId}")
     fun likeComment() {
-
     }
 
     @PostMapping("/comments/unlike/{targetId}")
     fun unlikeComment() {
-
     }
 }

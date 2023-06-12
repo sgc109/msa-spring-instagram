@@ -31,6 +31,5 @@ class LikeCount(
     var targetType: LikeTargetType,
 
     @Column(nullable = false)
-    var count: Long = 0
-) {
-}
+    var count: Long = 0,
+)

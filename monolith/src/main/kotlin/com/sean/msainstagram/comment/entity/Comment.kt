@@ -27,5 +27,4 @@ class Comment(
 
     @Column(nullable = false, updatable = false)
     val createdAt: ZonedDateTime = ZonedDateTime.now(),
-) {
-}
+)

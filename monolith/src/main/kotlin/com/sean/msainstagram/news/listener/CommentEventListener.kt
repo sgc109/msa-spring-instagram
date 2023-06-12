@@ -12,11 +12,9 @@ class CommentEventListener(
 ) {
     @TransactionalEventListener(CommentCreated::class)
     fun listenCommentCreated(event: CommentCreated) {
-
     }
 
     @TransactionalEventListener(CommentDeleted::class)
     fun listenCommentDeleted(event: CommentDeleted) {
-
     }
 }

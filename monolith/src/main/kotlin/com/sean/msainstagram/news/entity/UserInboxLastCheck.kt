@@ -28,5 +28,4 @@ class UserInboxLastCheck(
     val userId: Long,
 
     val timestamp: Instant,
-) {
-}
+)

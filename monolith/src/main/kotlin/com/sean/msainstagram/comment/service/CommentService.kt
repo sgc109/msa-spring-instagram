@@ -1,11 +1,11 @@
 package com.sean.msainstagram.comment.service
 
-import com.sean.msainstagram.comment.entity.Comment
-import com.sean.msainstagram.comment.entity.CommentCount
-import com.sean.msainstagram.comment.entity.CommentTargetType
 import com.sean.msainstagram.comment.dto.CommentDto
 import com.sean.msainstagram.comment.dto.CommentForm
 import com.sean.msainstagram.comment.dto.Converters.toDto
+import com.sean.msainstagram.comment.entity.Comment
+import com.sean.msainstagram.comment.entity.CommentCount
+import com.sean.msainstagram.comment.entity.CommentTargetType
 import com.sean.msainstagram.comment.event.CommentCreated
 import com.sean.msainstagram.comment.event.CommentDeleted
 import com.sean.msainstagram.comment.repository.CommentCountRepository
@@ -29,7 +29,7 @@ class CommentService(
         form.repliedToCommentId?.let {
             val parentComment = commentRepository.findByIdOrNull(it)
                 ?: throw IllegalArgumentException(
-                    "Parent comment not found(id=$it): comment you are replying to is not found"
+                    "Parent comment not found(id=$it): comment you are replying to is not found",
                 )
 
             if (parentComment.parentId != null) {
@@ -72,13 +72,13 @@ class CommentService(
     private fun increasePostCommentCountBy(mediaId: Long, inc: Long) {
         val newEntity = commentCountRepository.findByTargetIdAndTargetType(
             targetId = mediaId,
-            targetType = CommentTargetType.POST
+            targetType = CommentTargetType.POST,
         )?.apply {
             count += inc
         } ?: CommentCount(
             targetId = mediaId,
             targetType = CommentTargetType.POST,
-            count = inc
+            count = inc,
         )
         commentCountRepository.save(newEntity)
     }
@@ -86,13 +86,13 @@ class CommentService(
     private fun increaseSubCommentCountByOne(parentId: Long, inc: Long) {
         val newEntity = commentCountRepository.findByTargetIdAndTargetType(
             targetId = parentId,
-            targetType = CommentTargetType.COMMENT
+            targetType = CommentTargetType.COMMENT,
         )?.apply {
             count += inc
         } ?: CommentCount(
             targetId = parentId,
             targetType = CommentTargetType.COMMENT,
-            count = inc
+            count = inc,
         )
         commentCountRepository.save(newEntity)
     }
@@ -112,7 +112,7 @@ class CommentService(
         val commentCountByTargetId = withContext(Dispatchers.IO) {
             commentCountRepository.findAllByTargetTypeAndTargetIdIn(
                 targetType = targetType,
-                targetIds = targetIds
+                targetIds = targetIds,
             )
         }.associateBy { it.targetId }
 

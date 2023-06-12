@@ -1,7 +1,7 @@
 package com.sean.msainstagram.user.service
 
-import com.sean.msainstagram.user.entity.User
 import com.sean.msainstagram.user.dto.UserInfoDto
+import com.sean.msainstagram.user.entity.User
 import com.sean.msainstagram.user.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

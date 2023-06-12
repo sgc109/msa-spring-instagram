@@ -31,5 +31,4 @@ class FriendshipCount(
 
     @Column(nullable = false)
     var followedCount: Long = 0,
-) {
-}
+)

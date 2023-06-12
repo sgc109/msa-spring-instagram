@@ -12,5 +12,4 @@ data class UserInfoDto(
     val followerCount: Long = 0,
     val followingCount: Long = 0,
     val isPrivate: Boolean,
-) {
-}
+)

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface CommentCountRepository : JpaRepository<CommentCount, Long> {
     fun findByTargetIdAndTargetType(
         targetId: Long,
-        targetType: CommentTargetType
+        targetType: CommentTargetType,
     ): CommentCount?
 
     fun findAllByTargetTypeAndTargetIdIn(

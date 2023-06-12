@@ -11,10 +11,8 @@ class InboxService(
 ) {
     @Transactional
     fun createStory() {
-
     }
 
     fun listStories() {
-
     }
 }

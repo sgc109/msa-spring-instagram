@@ -1,9 +1,9 @@
 package com.sean.msainstagram.follow.service
 
-import com.sean.msainstagram.follow.entity.Friendship
-import com.sean.msainstagram.follow.entity.FriendshipCount
 import com.sean.msainstagram.follow.dto.FriendshipCountDto
 import com.sean.msainstagram.follow.dto.FriendshipCountDto.Companion.DEFAULT_FRIENDSHIP_COUNT
+import com.sean.msainstagram.follow.entity.Friendship
+import com.sean.msainstagram.follow.entity.FriendshipCount
 import com.sean.msainstagram.follow.event.FriendshipCreated
 import com.sean.msainstagram.follow.event.FriendshipDeleted
 import com.sean.msainstagram.follow.repository.FriendshipCountRepository
@@ -44,7 +44,7 @@ class FriendshipService(
     private fun breakFriendshipBetween(followerId: Long, followeeId: Long) {
         friendshipRepository.findByFollowerIdAndFolloweeId(
             followerId = followerId,
-            followeeId = followeeId
+            followeeId = followeeId,
         )?.also {
             friendshipRepository.deleteById(it.id)
             eventPublisher.publishEvent(FriendshipDeleted(aggregateId = it.id))

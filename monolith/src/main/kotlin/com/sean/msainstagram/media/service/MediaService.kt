@@ -1,11 +1,11 @@
 package com.sean.msainstagram.media.service
 
-import com.sean.msainstagram.media.entity.CarouselMedia
-import com.sean.msainstagram.media.entity.Media
 import com.sean.msainstagram.media.dto.CarouselMediaForm
 import com.sean.msainstagram.media.dto.Converters.toDto
 import com.sean.msainstagram.media.dto.MediaDto
 import com.sean.msainstagram.media.dto.MediaForm
+import com.sean.msainstagram.media.entity.CarouselMedia
+import com.sean.msainstagram.media.entity.Media
 import com.sean.msainstagram.media.repository.MediaRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

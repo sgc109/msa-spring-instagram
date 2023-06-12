@@ -9,5 +9,4 @@ open class DomainEvent(
     open val aggregateId: Long,
     open val aggregateType: String,
     open val timestamp: Instant = Instant.now(),
-) {
-}
+)

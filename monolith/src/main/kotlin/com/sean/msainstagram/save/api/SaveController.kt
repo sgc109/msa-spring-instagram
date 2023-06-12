@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RestController
 class SaveController {
     @PostMapping("/{mediaId}/save")
     fun save() {
-
     }
 
     @PostMapping("/{mediaId}/unsave")
     fun unsave() {
-
     }
 }

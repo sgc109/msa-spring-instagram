@@ -12,11 +12,9 @@ class LikeEventListener(
 ) {
     @TransactionalEventListener(LikeCreated::class)
     fun listenLikeCreated(event: LikeCreated) {
-
     }
 
     @TransactionalEventListener(LikeDeleted::class)
     fun listenLikeDeleted(event: LikeDeleted) {
-
     }
 }

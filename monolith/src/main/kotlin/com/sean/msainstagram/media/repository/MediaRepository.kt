@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param
 interface MediaRepository : JpaRepository<Media, Long> {
     @Query(
         "SELECT media " +
-                "FROM Media media " +
-                "WHERE media.authorId = :authorId AND media.id > :lastId " +
-                "ORDER BY media.id DESC"
+            "FROM Media media " +
+            "WHERE media.authorId = :authorId AND media.id > :lastId " +
+            "ORDER BY media.id DESC",
     )
     fun listNByAuthorIdFromLastId(
         @Param("authorId") authorId: Long,
@@ -21,9 +21,9 @@ interface MediaRepository : JpaRepository<Media, Long> {
 
     @Query(
         "SELECT media " +
-                "FROM Media media " +
-                "WHERE media.authorId = :authorId " +
-                "ORDER BY media.id DESC"
+            "FROM Media media " +
+            "WHERE media.authorId = :authorId " +
+            "ORDER BY media.id DESC",
     )
     fun listNByAuthorId(
         @Param("authorId") authorId: Long,

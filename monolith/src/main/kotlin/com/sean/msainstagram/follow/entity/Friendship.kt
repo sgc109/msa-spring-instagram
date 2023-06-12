@@ -31,5 +31,4 @@ class Friendship(
 
     @Column(nullable = false)
     var pending: Boolean = false,
-) {
-}
+)

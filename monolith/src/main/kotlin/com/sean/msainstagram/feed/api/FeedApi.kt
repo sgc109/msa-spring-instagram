@@ -11,6 +11,6 @@ interface FeedApi {
     fun getUserFeed(
         @Parameter userId: Long,
         @Parameter count: Int?,
-        @Parameter maxId: Long?
+        @Parameter maxId: Long?,
     ): UserFeedPage
 }

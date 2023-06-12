@@ -13,6 +13,5 @@ class PostTag(
     var id: Long = 0,
 
     @Column(nullable = false)
-    var mediaId: Long = 0
-) {
-}
+    var mediaId: Long = 0,
+)
