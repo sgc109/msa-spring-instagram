@@ -1,4 +1,4 @@
-package com.sean.msainstagram.comment.domain
+package com.sean.msainstagram.comment.entity
 
 import java.time.ZonedDateTime
 import javax.persistence.Column

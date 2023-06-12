@@ -1,7 +1,7 @@
 package com.sean.msainstagram.media.service
 
-import com.sean.msainstagram.media.domain.CarouselMedia
-import com.sean.msainstagram.media.domain.Media
+import com.sean.msainstagram.media.entity.CarouselMedia
+import com.sean.msainstagram.media.entity.Media
 import com.sean.msainstagram.media.dto.CarouselMediaForm
 import com.sean.msainstagram.media.dto.Converters.toDto
 import com.sean.msainstagram.media.dto.MediaDto

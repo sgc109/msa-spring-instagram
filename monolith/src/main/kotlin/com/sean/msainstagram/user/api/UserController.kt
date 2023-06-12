@@ -15,7 +15,7 @@ class UserController(
     private val friendshipService: FriendshipService,
 ) {
     @GetMapping("/info")
-    fun getUserInfo(@RequestParam("username") username: String): UserInfoDto {
+    fun getUserInfo(@RequestParam username: String): UserInfoDto {
         val userInfo = userService.getUserByName(username = username)
 
         val friendshipInfo = friendshipService.getFriendship(userId = userInfo.id)

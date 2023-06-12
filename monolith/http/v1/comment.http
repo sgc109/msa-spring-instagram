@@ -1,3 +1,6 @@
+### list comments
+GET {{host}}/api/v1/media/1/comments?min_id=0
+
 ### add comment
 POST {{host}}/api/v1/comments/1/add
 Content-Type: application/json

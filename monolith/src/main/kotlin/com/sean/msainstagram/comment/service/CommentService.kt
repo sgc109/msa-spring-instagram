@@ -1,8 +1,8 @@
 package com.sean.msainstagram.comment.service
 
-import com.sean.msainstagram.comment.domain.Comment
-import com.sean.msainstagram.comment.domain.CommentCount
-import com.sean.msainstagram.comment.domain.CommentTargetType
+import com.sean.msainstagram.comment.entity.Comment
+import com.sean.msainstagram.comment.entity.CommentCount
+import com.sean.msainstagram.comment.entity.CommentTargetType
 import com.sean.msainstagram.comment.dto.CommentDto
 import com.sean.msainstagram.comment.dto.CommentForm
 import com.sean.msainstagram.comment.dto.Converters.toDto

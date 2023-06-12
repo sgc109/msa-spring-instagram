@@ -1,4 +1,4 @@
-package com.sean.msainstagram.follow.domain
+package com.sean.msainstagram.follow.entity
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -12,24 +12,24 @@ import javax.persistence.Table
 @Table(
     indexes = [
         Index(
-            name = "uk_user_id",
-            columnList = "userId",
+            name = "uk_friendship_follower_id_followee_id",
+            columnList = "followerId,followeeId",
             unique = true,
         ),
     ],
 )
-class FriendshipCount(
+class Friendship(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
-    @Column(nullable = false, updatable = false)
-    val userId: Long,
+    @Column(nullable = false)
+    var followerId: Long = 0,
 
     @Column(nullable = false)
-    var followingCount: Long = 0,
+    var followeeId: Long = 0,
 
     @Column(nullable = false)
-    var followedCount: Long = 0,
+    var pending: Boolean = false,
 ) {
 }

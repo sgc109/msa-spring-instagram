@@ -1,4 +1,4 @@
-package com.sean.msainstagram.comment.domain
+package com.sean.msainstagram.media.entity
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -12,24 +12,21 @@ import javax.persistence.Table
 @Table(
     indexes = [
         Index(
-            name = "uk_comment_count_target_id_target_type",
-            columnList = "targetId,targetType",
+            name = "uk_media_count_author_id",
+            columnList = "authorId",
             unique = true,
         ),
     ],
 )
-class CommentCount(
+
+class MediaCount(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
-    @Column(nullable = false)
-    val targetId: Long = 0,
-
-    @Column
-    val targetType: CommentTargetType,
+    @Column(nullable = false, updatable = false)
+    val authorId: Long,
 
     @Column(nullable = false)
-    var count: Long = 0
-) {
-}
+    val count: Long = 0,
+)

@@ -21,13 +21,13 @@ class CommentController(
     private val commentService: CommentService,
 ) {
     @GetMapping("/media/{mediaId}/comments")
-    fun getComments(@PathVariable("mediaId") mediaId: Long, @RequestParam("minId") minId: String) {
+    fun getComments(@PathVariable mediaId: Long, @RequestParam minId: String) {
         // TODO: comments pagination
     }
 
     @PostMapping("/comments/{mediaId}/add")
     fun addComment(
-        @PathVariable("mediaId") mediaId: Long,
+        @PathVariable mediaId: Long,
         @RequestBody @Valid form: CommentForm
     ): CreateCommentResponse {
         return commentService.addComment(requesterId = DUMMY_REQUESTER_ID, mediaId = mediaId, form = form)
@@ -36,8 +36,8 @@ class CommentController(
 
     @PostMapping("/comments/{mediaId}/delete/{commentId}")
     fun deleteComment(
-        @PathVariable("mediaId") mediaId: Long,
-        @PathVariable("commentId") commentId: Long,
+        @PathVariable mediaId: Long,
+        @PathVariable commentId: Long,
     ) {
         commentService.deleteComment(
             requesterId = DUMMY_REQUESTER_ID,

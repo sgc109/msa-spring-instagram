@@ -1,7 +1,7 @@
 package com.sean.msainstagram.follow.service
 
-import com.sean.msainstagram.follow.domain.Friendship
-import com.sean.msainstagram.follow.domain.FriendshipCount
+import com.sean.msainstagram.follow.entity.Friendship
+import com.sean.msainstagram.follow.entity.FriendshipCount
 import com.sean.msainstagram.follow.dto.FriendshipCountDto
 import com.sean.msainstagram.follow.dto.FriendshipCountDto.Companion.DEFAULT_FRIENDSHIP_COUNT
 import com.sean.msainstagram.follow.event.FriendshipCreated

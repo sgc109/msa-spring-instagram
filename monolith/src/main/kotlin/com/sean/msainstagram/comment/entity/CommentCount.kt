@@ -1,6 +1,5 @@
-package com.sean.msainstagram.like.domain
+package com.sean.msainstagram.comment.entity
 
-import com.sean.msainstagram.like.dto.LikeTargetType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -11,27 +10,26 @@ import javax.persistence.Table
 
 @Entity
 @Table(
-    name = "user_like",
     indexes = [
         Index(
-            name = "uk_user_like_target_id_target_type_liker_id",
-            columnList = "targetId,targetType,likerId",
+            name = "uk_comment_count_target_id_target_type",
+            columnList = "targetId,targetType",
             unique = true,
         ),
     ],
 )
-class Like(
+class CommentCount(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
     @Column(nullable = false)
-    var likerId: Long = 0,
+    val targetId: Long = 0,
+
+    @Column
+    val targetType: CommentTargetType,
 
     @Column(nullable = false)
-    var targetId: Long = 0,
-
-    @Column(nullable = false)
-    var targetType: LikeTargetType = LikeTargetType.POST
+    var count: Long = 0
 ) {
 }

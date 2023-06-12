@@ -1,6 +1,6 @@
 package com.sean.msainstagram.feed.api
 
-import com.sean.msainstagram.comment.domain.CommentTargetType
+import com.sean.msainstagram.comment.entity.CommentTargetType
 import com.sean.msainstagram.comment.service.CommentService
 import com.sean.msainstagram.common.DUMMY_REQUESTER_ID
 import com.sean.msainstagram.feed.dto.UserFeedPage

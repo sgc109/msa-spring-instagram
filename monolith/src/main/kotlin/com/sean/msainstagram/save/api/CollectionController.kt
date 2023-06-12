@@ -21,14 +21,14 @@ class CollectionController(
 
     @PostMapping("/{collectionId}/edit")
     fun editCollection(
-        @PathVariable("collectionId") collectionId: Long,
+        @PathVariable collectionId: Long,
         @RequestBody form: UpdateCollectionForm
     ) {
 
     }
 
     @PostMapping("/{collectionId}/delete")
-    fun deleteCollection(@PathVariable("collectionId") collectionId: Long) {
+    fun deleteCollection(@PathVariable collectionId: Long) {
         collectionService.delete(collectionId)
     }
 }

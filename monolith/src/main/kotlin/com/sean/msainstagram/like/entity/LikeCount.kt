@@ -1,5 +1,6 @@
-package com.sean.msainstagram.follow.domain
+package com.sean.msainstagram.like.entity
 
+import com.sean.msainstagram.like.dto.LikeTargetType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -12,24 +13,24 @@ import javax.persistence.Table
 @Table(
     indexes = [
         Index(
-            name = "uk_friendship_follower_id_followee_id",
-            columnList = "followerId,followeeId",
+            name = "uk_like_count_target_id_target_type",
+            columnList = "targetId,targetType",
             unique = true,
         ),
     ],
 )
-class Friendship(
+class LikeCount(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
     @Column(nullable = false)
-    var followerId: Long = 0,
+    var targetId: Long,
 
     @Column(nullable = false)
-    var followeeId: Long = 0,
+    var targetType: LikeTargetType,
 
     @Column(nullable = false)
-    var pending: Boolean = false,
+    var count: Long = 0
 ) {
 }

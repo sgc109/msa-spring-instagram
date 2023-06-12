@@ -1,6 +1,6 @@
 package com.sean.msainstagram.media.repository
 
-import com.sean.msainstagram.media.domain.Media
+import com.sean.msainstagram.media.entity.Media
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query

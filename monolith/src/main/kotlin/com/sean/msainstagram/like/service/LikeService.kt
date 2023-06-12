@@ -1,9 +1,9 @@
 package com.sean.msainstagram.like.service
 
-import com.sean.msainstagram.like.domain.Like
-import com.sean.msainstagram.like.domain.LikeCount
 import com.sean.msainstagram.like.dto.LikeInfo
 import com.sean.msainstagram.like.dto.LikeTargetType
+import com.sean.msainstagram.like.entity.Like
+import com.sean.msainstagram.like.entity.LikeCount
 import com.sean.msainstagram.like.event.LikeCreated
 import com.sean.msainstagram.like.event.LikeDeleted
 import com.sean.msainstagram.like.repository.LikeCountRepository
@@ -30,12 +30,8 @@ class LikeService(
             targetType = targetType,
         )
 
-        try {
-            likeRepository.save(newEntity)
-            eventPublisher.publishEvent(LikeCreated(aggregateId = newEntity.id))
-        } catch (ex: Exception) {
-            throw IllegalArgumentException("Cannot like same ${targetType.name} multiple times.")
-        }
+        likeRepository.save(newEntity)
+        eventPublisher.publishEvent(LikeCreated(aggregateId = newEntity.id))
 
         val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(targetId, targetType)?.apply {
             count += 1

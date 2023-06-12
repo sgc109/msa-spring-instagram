@@ -1,6 +1,6 @@
 package com.sean.msainstagram.config
 
-import com.sean.msainstagram.user.domain.User
+import com.sean.msainstagram.user.entity.User
 import com.sean.msainstagram.user.repository.UserRepository
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner

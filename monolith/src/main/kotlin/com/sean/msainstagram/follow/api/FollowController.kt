@@ -15,7 +15,7 @@ class FollowController(
     private val friendshipService: FriendshipService,
 ) {
     @PostMapping("/create/{userId}")
-    fun follow(@PathVariable("userId") userId: Long) {
+    fun follow(@PathVariable userId: Long) {
         val requesterId = DUMMY_REQUESTER_ID
 
         validateUserId(requesterId, userId)
@@ -33,7 +33,7 @@ class FollowController(
     }
 
     @PostMapping("/destroy/{userId}")
-    fun unfollow(@PathVariable("userId") userId: Long) {
+    fun unfollow(@PathVariable userId: Long) {
         val requesterId = DUMMY_REQUESTER_ID
 
         validateUserId(requesterId, userId)

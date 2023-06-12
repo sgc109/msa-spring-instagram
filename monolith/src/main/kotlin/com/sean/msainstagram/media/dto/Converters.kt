@@ -1,7 +1,7 @@
 package com.sean.msainstagram.media.dto
 
-import com.sean.msainstagram.media.domain.Media
-import com.sean.msainstagram.media.domain.CarouselMedia
+import com.sean.msainstagram.media.entity.Media
+import com.sean.msainstagram.media.entity.CarouselMedia
 
 object Converters {
     fun Media.toDto(): MediaDto =

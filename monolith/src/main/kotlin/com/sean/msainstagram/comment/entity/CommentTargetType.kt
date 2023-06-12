@@ -1,4 +1,4 @@
-package com.sean.msainstagram.comment.domain
+package com.sean.msainstagram.comment.entity
 
 enum class CommentTargetType {
     POST, COMMENT

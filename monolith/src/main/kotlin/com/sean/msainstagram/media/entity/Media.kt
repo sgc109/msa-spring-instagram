@@ -1,4 +1,4 @@
-package com.sean.msainstagram.media.domain
+package com.sean.msainstagram.media.entity
 
 import java.time.ZonedDateTime
 import javax.persistence.CascadeType

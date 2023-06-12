@@ -1,15 +1,17 @@
-package com.sean.msainstagram.user.domain
+package com.sean.msainstagram.save.entity
 
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Profile {
+class Save {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userId: Long = 0
+    var id: Long = 0
 
-
+    @Column
+    var collectionId: Long? = null
 }

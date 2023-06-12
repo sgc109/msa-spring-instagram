@@ -1,6 +1,6 @@
 package com.sean.msainstagram.comment.dto
 
-import com.sean.msainstagram.comment.domain.Comment
+import com.sean.msainstagram.comment.entity.Comment
 
 object Converters {
     fun Comment.toDto(): CommentDto =
