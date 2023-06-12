@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/v1/save")
-class SaveController {
+class SaveController : SaveApi {
     @PostMapping("/{mediaId}/save")
-    fun save() {
+    override fun save() {
     }
 
     @PostMapping("/{mediaId}/unsave")
-    fun unsave() {
+    override fun unsave() {
     }
 }

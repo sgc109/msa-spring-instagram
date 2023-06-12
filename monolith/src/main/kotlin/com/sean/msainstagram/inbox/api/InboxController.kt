@@ -1,7 +1,7 @@
-package com.sean.msainstagram.news.api
+package com.sean.msainstagram.inbox.api
 
-import com.sean.msainstagram.news.dto.InboxResponse
-import com.sean.msainstagram.news.service.InboxService
+import com.sean.msainstagram.inbox.dto.InboxResponse
+import com.sean.msainstagram.inbox.service.InboxService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -9,9 +9,9 @@ import java.time.Instant
 
 @RestController
 @RequestMapping("/v1/news")
-class NewsController(
+class InboxController(
     private val inboxService: InboxService,
-) {
+) : InboxApi {
     @PostMapping("/inbox")
     fun inbox(): InboxResponse {
         // TODO: implement notification inbox pagination(maybe not)

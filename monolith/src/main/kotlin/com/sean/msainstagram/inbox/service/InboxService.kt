@@ -1,6 +1,6 @@
-package com.sean.msainstagram.news.service
+package com.sean.msainstagram.inbox.service
 
-import com.sean.msainstagram.news.repository.InboxStoryRepository
+import com.sean.msainstagram.inbox.repository.InboxStoryRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

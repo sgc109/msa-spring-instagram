@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(
     private val userService: UserService,
     private val friendshipService: FriendshipService,
-) {
+) : UserApi {
     @GetMapping("/info")
-    fun getUserInfo(@RequestParam username: String): UserInfoDto {
+    override fun getUserInfo(@RequestParam username: String): UserInfoDto {
         val userInfo = userService.getUserByName(username = username)
 
         val friendshipInfo = friendshipService.getFriendship(userId = userInfo.id)

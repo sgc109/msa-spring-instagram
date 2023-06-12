@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1")
 class LikeController(
     private val likeService: LikeService,
-) {
-    @PostMapping("/likes/{targetId}/like")
-    fun likePost(@PathVariable targetId: Long) {
+) : LikeApi {
+    @PostMapping("/likes/{media}/like")
+    override fun likeMedia(@PathVariable media: Long) {
 
         // TODO: check if the target exists
         try {
             likeService.like(
                 requesterId = DUMMY_REQUESTER_ID,
                 targetType = LikeTargetType.POST,
-                targetId = targetId,
+                media = media,
             )
         } catch (ex: DataIntegrityViolationException) {
             if (ex.cause !is ConstraintViolationException) {
@@ -32,21 +32,21 @@ class LikeController(
         }
     }
 
-    @PostMapping("/likes/{targetId}/unlike")
-    fun unlikePost(@PathVariable targetId: Long) {
+    @PostMapping("/likes/{mediaId}/unlike")
+    override fun unlikeMedia(@PathVariable mediaId: Long) {
         // TODO: check if the target exists
         likeService.unlike(
             requesterId = DUMMY_REQUESTER_ID,
             targetType = LikeTargetType.POST,
-            targetId = targetId,
+            mediaId = mediaId,
         )
     }
 
-    @PostMapping("/comments/like/{targetId}")
-    fun likeComment() {
+    @PostMapping("/comments/like/{commentId}")
+    override fun likeComment(@PathVariable commentId: Long) {
     }
 
-    @PostMapping("/comments/unlike/{targetId}")
-    fun unlikeComment() {
+    @PostMapping("/comments/unlike/{commentId}")
+    override fun unlikeComment(@PathVariable commentId: Long) {
     }
 }

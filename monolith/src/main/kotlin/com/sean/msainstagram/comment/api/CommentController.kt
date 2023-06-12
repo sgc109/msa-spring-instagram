@@ -19,14 +19,14 @@ import javax.validation.Valid
 @RequestMapping("/v1")
 class CommentController(
     private val commentService: CommentService,
-) {
+) : CommentApi {
     @GetMapping("/media/{mediaId}/comments")
-    fun getComments(@PathVariable mediaId: Long, @RequestParam minId: String) {
+    override fun getComments(@PathVariable mediaId: Long, @RequestParam minId: String) {
         // TODO: comments pagination
     }
 
     @PostMapping("/comments/{mediaId}/add")
-    fun addComment(
+    override fun addComment(
         @PathVariable mediaId: Long,
         @RequestBody @Valid form: CommentForm,
     ): CreateCommentResponse {
@@ -35,7 +35,7 @@ class CommentController(
     }
 
     @PostMapping("/comments/{mediaId}/delete/{commentId}")
-    fun deleteComment(
+    override fun deleteComment(
         @PathVariable mediaId: Long,
         @PathVariable commentId: Long,
     ) {

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/friendships")
 class FollowController(
     private val friendshipService: FriendshipService,
-) {
+) : FollowApi {
     @PostMapping("/create/{userId}")
-    fun follow(@PathVariable userId: Long) {
+    override fun follow(@PathVariable userId: Long) {
         val requesterId = DUMMY_REQUESTER_ID
 
         validateUserId(requesterId, userId)
@@ -33,7 +33,7 @@ class FollowController(
     }
 
     @PostMapping("/destroy/{userId}")
-    fun unfollow(@PathVariable userId: Long) {
+    override fun unfollow(@PathVariable userId: Long) {
         val requesterId = DUMMY_REQUESTER_ID
 
         validateUserId(requesterId, userId)

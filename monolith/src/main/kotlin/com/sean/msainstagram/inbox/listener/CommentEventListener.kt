@@ -1,8 +1,8 @@
-package com.sean.msainstagram.news.listener
+package com.sean.msainstagram.inbox.listener
 
 import com.sean.msainstagram.comment.event.CommentCreated
 import com.sean.msainstagram.comment.event.CommentDeleted
-import com.sean.msainstagram.news.service.InboxService
+import com.sean.msainstagram.inbox.service.InboxService
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionalEventListener
 

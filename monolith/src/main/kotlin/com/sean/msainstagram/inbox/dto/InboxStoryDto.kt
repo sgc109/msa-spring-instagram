@@ -1,4 +1,4 @@
-package com.sean.msainstagram.news.dto
+package com.sean.msainstagram.inbox.dto
 
 import java.time.Instant
 

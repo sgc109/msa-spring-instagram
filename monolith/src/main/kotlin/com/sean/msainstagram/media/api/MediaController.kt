@@ -14,9 +14,9 @@ import javax.validation.Valid
 @RequestMapping("/v1/media")
 class MediaController(
     private val mediaService: MediaService,
-) {
+) : MediaApi {
     @PostMapping
-    fun createPost(@RequestBody @Valid form: MediaForm): MediaDto {
+    override fun createMedia(@RequestBody @Valid form: MediaForm): MediaDto {
         return mediaService.createPost(requesterId = DUMMY_REQUESTER_ID, form)
     }
 }

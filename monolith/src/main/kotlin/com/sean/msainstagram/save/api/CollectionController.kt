@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/collections")
 class CollectionController(
     private val collectionService: CollectionService,
-) {
+) : CollectionApi {
     @PostMapping("/create")
-    fun createCollection(@RequestBody form: CollectionForm) {
+    override fun createCollection(@RequestBody form: CollectionForm) {
     }
 
     @PostMapping("/{collectionId}/edit")
-    fun editCollection(
+    override fun editCollection(
         @PathVariable collectionId: Long,
         @RequestBody form: UpdateCollectionForm,
     ) {
     }
 
     @PostMapping("/{collectionId}/delete")
-    fun deleteCollection(@PathVariable collectionId: Long) {
+    override fun deleteCollection(@PathVariable collectionId: Long) {
         collectionService.delete(collectionId)
     }
 }

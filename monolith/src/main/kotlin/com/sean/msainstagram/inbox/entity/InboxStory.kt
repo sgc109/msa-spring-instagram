@@ -1,4 +1,4 @@
-package com.sean.msainstagram.news.entity
+package com.sean.msainstagram.inbox.entity
 
 import javax.persistence.Column
 import javax.persistence.Entity

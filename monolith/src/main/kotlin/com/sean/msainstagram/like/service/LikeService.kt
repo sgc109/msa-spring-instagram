@@ -22,20 +22,20 @@ class LikeService(
     private val eventPublisher: ApplicationEventPublisher,
 ) {
     @Transactional
-    fun like(requesterId: Long, targetId: Long, targetType: LikeTargetType) {
+    fun like(requesterId: Long, media: Long, targetType: LikeTargetType) {
         val newEntity = Like(
             likerId = requesterId,
-            targetId = targetId,
+            targetId = media,
             targetType = targetType,
         )
 
         likeRepository.save(newEntity)
         eventPublisher.publishEvent(LikeCreated(aggregateId = newEntity.id))
 
-        val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(targetId, targetType)?.apply {
+        val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(media, targetType)?.apply {
             count += 1
         } ?: LikeCount(
-            targetId = targetId,
+            targetId = media,
             targetType = LikeTargetType.POST,
             count = 1,
         )
@@ -44,21 +44,21 @@ class LikeService(
     }
 
     @Transactional
-    fun unlike(requesterId: Long, targetId: Long, targetType: LikeTargetType) {
+    fun unlike(requesterId: Long, mediaId: Long, targetType: LikeTargetType) {
         val entityToDel = likeRepository.findAllByLikerIdAndTargetTypeAndTargetIdIn(
             likerId = requesterId,
             targetType = targetType,
-            targetIds = listOf(targetId),
+            targetIds = listOf(mediaId),
         ).firstOrNull()
             ?: throw IllegalArgumentException("Cannot unlike ${targetType.name} which is not liked yet")
 
         likeRepository.deleteById(entityToDel.id)
         eventPublisher.publishEvent(LikeDeleted(aggregateId = entityToDel.id))
 
-        val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(targetId, targetType)?.apply {
+        val likeCount = likeCountRepository.findByTargetIdAndTargetTypeOrNull(mediaId, targetType)?.apply {
             count -= 1
         } ?: LikeCount(
-            targetId = targetId,
+            targetId = mediaId,
             targetType = LikeTargetType.POST,
         )
 
