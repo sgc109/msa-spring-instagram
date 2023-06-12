@@ -1,0 +1,15 @@
+### create post
+POST {{host}}/api/v1/media
+Content-Type: application/json
+
+{
+  "caption": "test",
+  "carousel_media": [
+    {
+      "image_url": "https://dummy1.png"
+    },
+    {
+      "image_url": "https://dummy2.png"
+    }
+  ]
+}

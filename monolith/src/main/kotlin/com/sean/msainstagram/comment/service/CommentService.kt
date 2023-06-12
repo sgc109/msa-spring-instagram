@@ -25,7 +25,7 @@ class CommentService(
     private val eventPublisher: ApplicationEventPublisher,
 ) {
     @Transactional
-    fun addComment(requesterId: Long, postId: Long, form: CommentForm): CommentDto {
+    fun addComment(requesterId: Long, mediaId: Long, form: CommentForm): CommentDto {
         form.repliedToCommentId?.let {
             val parentComment = commentRepository.findByIdOrNull(it)
                 ?: throw IllegalArgumentException(
@@ -37,10 +37,10 @@ class CommentService(
             }
         }
 
-        val created = commentRepository.save(form.toEntity(authorId = requesterId, postId = postId))
+        val created = commentRepository.save(form.toEntity(authorId = requesterId, mediaId = mediaId))
         eventPublisher.publishEvent(CommentCreated(aggregateId = created.id))
 
-        increasePostCommentCountBy(postId = postId, inc = 1)
+        increasePostCommentCountBy(mediaId = mediaId, inc = 1)
 
         form.repliedToCommentId?.let {
             increaseSubCommentCountByOne(parentId = it, inc = 1)
@@ -50,10 +50,11 @@ class CommentService(
     }
 
     @Transactional
-    fun deleteComment(requesterId: Long, postId: Long, commentId: Long) {
+    fun deleteComment(requesterId: Long, mediaId: Long, commentId: Long) {
         val comment = commentRepository.findByIdOrNull(commentId)
             ?: throw IllegalArgumentException("Comment not found(id=$commentId).")
 
+        // TODO: Permit if requester is the author of the media where comment is on
         if (comment.authorId != requesterId) {
             throw IllegalArgumentException("You cannot delete other's comment.")
         }
@@ -61,28 +62,29 @@ class CommentService(
         commentRepository.deleteById(commentId)
         eventPublisher.publishEvent(CommentDeleted(aggregateId = commentId))
 
-        increasePostCommentCountBy(postId = postId, inc = -1)
+        increasePostCommentCountBy(mediaId = mediaId, inc = -1)
 
         comment.parentId?.let {
             increaseSubCommentCountByOne(parentId = it, inc = -1)
         }
     }
 
-    private fun increasePostCommentCountBy(postId: Long, inc: Long) {
-        commentCountRepository.findByTargetIdAndTargetType(
-            targetId = postId,
+    private fun increasePostCommentCountBy(mediaId: Long, inc: Long) {
+        val newEntity = commentCountRepository.findByTargetIdAndTargetType(
+            targetId = mediaId,
             targetType = CommentTargetType.POST
         )?.apply {
             count += inc
         } ?: CommentCount(
-            targetId = postId,
+            targetId = mediaId,
             targetType = CommentTargetType.POST,
             count = inc
         )
+        commentCountRepository.save(newEntity)
     }
 
     private fun increaseSubCommentCountByOne(parentId: Long, inc: Long) {
-        commentCountRepository.findByTargetIdAndTargetType(
+        val newEntity = commentCountRepository.findByTargetIdAndTargetType(
             targetId = parentId,
             targetType = CommentTargetType.COMMENT
         )?.apply {
@@ -92,18 +94,19 @@ class CommentService(
             targetType = CommentTargetType.COMMENT,
             count = inc
         )
+        commentCountRepository.save(newEntity)
     }
 
-    private fun CommentForm.toEntity(authorId: Long, postId: Long): Comment =
+    private fun CommentForm.toEntity(authorId: Long, mediaId: Long): Comment =
         Comment(
             parentId = repliedToCommentId,
             authorId = authorId,
             text = commentText,
-            targetId = postId,
+            mediaId = mediaId,
         )
 
     /**
-     * @return Size of return list must be the same with postIds param.
+     * @return Size of return list must be the same with mediaIds param.
      */
     suspend fun batchGetCommentCounts(targetType: CommentTargetType, targetIds: List<Long>): List<Long> {
         val commentCountByTargetId = withContext(Dispatchers.IO) {

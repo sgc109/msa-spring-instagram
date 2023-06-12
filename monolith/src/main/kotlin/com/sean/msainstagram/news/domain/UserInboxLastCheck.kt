@@ -1,5 +1,6 @@
-package com.sean.msainstagram.user.domain
+package com.sean.msainstagram.news.domain
 
+import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -12,29 +13,20 @@ import javax.persistence.Table
 @Table(
     indexes = [
         Index(
-            name = "uk_user_name",
-            columnList = "name",
+            name = "uk_user_id",
+            columnList = "userId",
             unique = true,
         ),
     ],
 )
-class User(
-
+class UserInboxLastCheck(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
     @Column(nullable = false)
-    var name: String = "",
+    val userId: Long,
 
-    @Column(nullable = false)
-    var fullName: String = "",
-
-    @Column(nullable = false)
-    var bio: String = "",
-
-    var imageUrl: String? = null,
-
-    @Column(nullable = false)
-    var isPrivate: Boolean = false,
-)
+    val timestamp: Instant,
+) {
+}

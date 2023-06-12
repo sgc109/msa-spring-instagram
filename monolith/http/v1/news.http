@@ -1,0 +1,2 @@
+### get notification inbox
+POST {{host}}/api/v1/news/inbox

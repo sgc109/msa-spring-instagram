@@ -1,8 +1,8 @@
 package com.sean.msainstagram.feed.dto
 
-import com.sean.msainstagram.post.dto.PostDto
+import com.sean.msainstagram.media.dto.MediaDto
 
 data class UserFeedPage(
-    val posts: List<PostDto>,
+    val medias: List<MediaDto>,
     val nextMaxId: Long?,
 )

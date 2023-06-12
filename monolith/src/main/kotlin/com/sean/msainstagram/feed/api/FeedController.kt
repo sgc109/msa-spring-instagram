@@ -37,15 +37,15 @@ class FeedController(
             firstId = maxId
         )
 
-        val originalPosts = feedPage.posts
-        val originalPostIds = originalPosts.map { it.id }
+        val originalPosts = feedPage.medias
+        val originalMediaIds = originalPosts.map { it.id }
 
         val likeInfosJob = async {
-            fetchLikeInfosAsync(postIds = originalPostIds, requesterId = requesterId)
+            fetchLikeInfosAsync(mediaIds = originalMediaIds, requesterId = requesterId)
         }
 
         val commentCountJob = async {
-            fetchCommentCountAsync(postIds = originalPostIds)
+            fetchCommentCountAsync(mediaIds = originalMediaIds)
         }
 
         val postsWithLikeInfo = originalPosts.zip(likeInfosJob.await()).map { (post, likeInfo) ->
@@ -62,21 +62,21 @@ class FeedController(
                 )
             }
 
-        feedPage.copy(posts = postsWithLikeInfoAndCommentCount)
+        feedPage.copy(medias = postsWithLikeInfoAndCommentCount)
     }
 
-    private suspend fun fetchLikeInfosAsync(postIds: List<Long>, requesterId: Long): List<LikeInfo> {
+    private suspend fun fetchLikeInfosAsync(mediaIds: List<Long>, requesterId: Long): List<LikeInfo> {
         return likeService.batchGetLikeInfo(
             likerId = requesterId,
             targetType = LikeTargetType.POST,
-            targetIds = postIds,
+            targetIds = mediaIds,
         )
     }
 
-    private suspend fun fetchCommentCountAsync(postIds: List<Long>): List<Long> {
+    private suspend fun fetchCommentCountAsync(mediaIds: List<Long>): List<Long> {
         return commentService.batchGetCommentCounts(
             targetType = CommentTargetType.POST,
-            targetIds = postIds
+            targetIds = mediaIds
         )
     }
 

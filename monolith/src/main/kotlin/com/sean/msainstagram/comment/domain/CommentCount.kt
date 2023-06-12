@@ -13,7 +13,7 @@ import javax.persistence.Table
     indexes = [
         Index(
             name = "uk_comment_count_target_id_target_type",
-            columnList = "target_id,target_type",
+            columnList = "targetId,targetType",
             unique = true,
         ),
     ],
@@ -26,6 +26,7 @@ class CommentCount(
     @Column(nullable = false)
     val targetId: Long = 0,
 
+    @Column
     val targetType: CommentTargetType,
 
     @Column(nullable = false)

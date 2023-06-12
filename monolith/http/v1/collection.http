@@ -1,0 +1,10 @@
+### delete collection
+POST {{host}}/api/v1/collections/create
+Content-Type: application/json
+
+{
+  "name": "my collection",
+  "added_media_ids": [
+    "1"
+  ]
+}

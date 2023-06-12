@@ -1,0 +1,2 @@
+### get user profile
+GET {{host}}/api/v1/users/info?username=sean

@@ -1,0 +1,5 @@
+### follow
+POST {{host}}/api/v1/friendships/create/2
+
+### unfollow
+POST {{host}}/api/v1/friendships/destroy/2

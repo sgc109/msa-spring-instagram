@@ -1,6 +1,5 @@
-package com.sean.msainstagram.comment.domain
+package com.sean.msainstagram.news.domain
 
-import java.time.ZonedDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -8,24 +7,16 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Comment(
+class InboxStory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
     @Column(nullable = false)
-    val mediaId: Long,
+    var latestRaiserId: Long,
 
-    @Column
-    val parentId: Long? = null,
-
-    @Column(nullable = false)
-    val authorId: Long,
-
-    @Column(length = 1000, nullable = false)
-    var text: String,
+    var penultimateRaiserId: Long?,
 
     @Column(nullable = false, updatable = false)
-    val createdAt: ZonedDateTime = ZonedDateTime.now(),
-) {
-}
+    val receiverId: Long,
+)

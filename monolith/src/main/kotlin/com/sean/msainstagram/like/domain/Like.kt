@@ -15,7 +15,7 @@ import javax.persistence.Table
     indexes = [
         Index(
             name = "uk_user_like_target_id_target_type_liker_id",
-            columnList = "target_id,target_type,liker_id",
+            columnList = "targetId,targetType,likerId",
             unique = true,
         ),
     ],
