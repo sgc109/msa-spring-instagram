@@ -41,7 +41,7 @@ These are features that the app supports, will support later, and don't support.
 * Profile
 * Post(only image)
 * Inbox
-* User tags
+* User tags(on posts)
 * Hashtags
 * Search(accounts & tags)
 * Push Notification(fake impl)
