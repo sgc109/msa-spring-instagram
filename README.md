@@ -26,6 +26,8 @@ Spring MVC).
   of them could be different from the real one for simplicity, such as post uploading).
 
 ## Features
+These are features that the app supports, will support later, and don't support.
+
 ### Supported
 
 ### In-progress
