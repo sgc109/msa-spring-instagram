@@ -7,6 +7,7 @@ participant Comment as comment
 participant Media as media
 participant Inbox as inbox
 participant Push as push
+participant Like as like
 queue Kafka as kafka
 
 user -> bff: delete a comment on a comment
@@ -29,4 +30,6 @@ alt if not exist
 inbox -> comment: request parent comment author id
 inbox -> inbox: delete/update user inbox info
 end
+like <-- kafka: consume comment_deleted event
+like -> like: delete all like info
 @enduml

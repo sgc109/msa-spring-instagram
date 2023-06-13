@@ -4,6 +4,7 @@ title "add a threaded comment flow"
 actor User as user
 participant BFF as bff
 participant Comment as comment
+participant Media as media
 participant Inbox as inbox
 participant Push as push
 queue Kafka as kafka
@@ -22,7 +23,9 @@ kafka --> inbox: comsume comment_created event
 inbox -> comment: request comment info
 alt if exists
 inbox -> comment: request parent comment author id
-inbox -> inbox: insert/update user inbox info
+inbox -> media: request post author id
+inbox -> inbox: insert/update user inbox info\n(parent comment author)
+inbox -> inbox: insert/update user inbox info\n(post author)
 inbox -> push: request push notification reservation
 end
 @enduml
