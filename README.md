@@ -25,6 +25,34 @@ Spring MVC).
 * Most of the APIs were implements by analyzing the URL and parameters of the actual APIs of Instagram(Of course, some
   of them could be different from the real one for simplicity, such as post uploading).
 
+## Features
+### Supported
+
+### In-progress
+* Like
+* Save
+* Comment(w/ threads)
+* Feed
+  * User feed
+  * Following feed
+* Follow
+* Profile
+* Post(only image)
+* Inbox
+* User tags
+* Hashtags
+* Search(accounts & tags)
+* Push Notification(fake impl)
+
+### Not-supported
+* Story
+* DM
+* Reels
+* Post(video)
+* Search(posts)
+* Ads
+
+
 ## Skills
 
 ### Common
@@ -42,7 +70,7 @@ Spring MVC).
 
 ### MSA
 
-#### Post Service
+#### Media Service
 
 #### Feed Service
 
@@ -57,8 +85,6 @@ Spring MVC).
 ### TODOs
 
 * Authentication
-* DDD
-* Swagger
 * Hexagonal Architecture
 * Docker
 * GitHub Actions

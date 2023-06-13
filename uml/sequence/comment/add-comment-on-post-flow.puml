@@ -1,0 +1,29 @@
+@startuml
+title "add a comment on a post flow"
+
+actor User as user
+participant BFF as bff
+participant Comment as comment
+participant Media as media
+participant Inbox as inbox
+participant Push as push
+queue Kafka as kafka
+
+user -> bff: add a comment on a post
+bff -> media: check if the post exists
+alt if not exist
+user <- bff: error response
+end
+bff -> comment: comment add request
+comment -> comment: insert comment
+bff <- comment: response
+user <- bff: response
+comment --> kafka: publish comment_created event
+kafka --> inbox: comsume comment_created event
+inbox -> comment: request comment info
+alt if exists
+inbox -> media: request post author id
+inbox -> inbox: insert/update user inbox info
+inbox -> push: request push notification reservation
+end
+@enduml

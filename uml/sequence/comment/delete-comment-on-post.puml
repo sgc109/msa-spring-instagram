@@ -1,0 +1,32 @@
+@startuml
+title "delete a comment on a post flow"
+
+actor User as user
+participant BFF as bff
+participant Comment as comment
+participant Media as media
+participant Inbox as inbox
+participant Push as push
+queue Kafka as kafka
+
+user -> bff: delete a comment on a post
+bff -> media: check if the post exists
+alt if not exist
+user <- bff: error response
+end
+bff -> comment: comment delete request
+comment -> comment: delete comment
+alt if not exist
+bff <- comment: error response
+user <- bff: error response
+end
+bff <- comment: response
+user <- bff: response
+comment --> kafka: publish comment_deleted event(w/ post id)
+kafka --> inbox: comsume comment_deleted event
+inbox -> comment: request comment info
+alt if not exist
+inbox -> media: request post author id
+inbox -> inbox: delete/update user inbox info
+end
+@enduml

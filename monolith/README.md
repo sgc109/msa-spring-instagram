@@ -19,3 +19,4 @@
 * Spring MVC
 * Spring Data JPA
 * H2 DB
+* Swagger UI
