@@ -1,3 +1,5 @@
+# https://github.com/frederikheld/render-plantuml-to-wiki-action/tree/master
+
 name: generate plantuml to Wiki
 on: push
 jobs:
@@ -10,9 +12,15 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 0
-    - name: Render PlantUML to wiki
+    - name: Render PlantUML to wiki(comment)
       uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
       with:
         WIKI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        INPUT_DIR: 'uml'
+        INPUT_DIR: 'uml/sequence/comment'
+        OUTPUT_DIR: 'uml/generated'
+    - name: Render PlantUML to wiki(like)
+      uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
+      with:
+        WIKI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_DIR: 'uml/sequence/like'
         OUTPUT_DIR: 'uml/generated'
