@@ -1,0 +1,29 @@
+@startuml
+title "post like flow"
+
+actor User as user
+participant BFF as bff
+participant Media as media
+participant Like as like
+participant Inbox as inbox
+participant Push as push
+queue Kafka as kafka
+
+user -> bff: like a post
+bff -> media: check if the post exists
+alt if not exist
+user <- bff: error response
+end
+bff -> like: like request
+like -> like: insert like info\n(Do nothing if already exists)
+bff <- like: response
+user <- bff: response
+like --> kafka: publish like_created event
+kafka --> inbox: comsume like_created event
+inbox -> like: request like info
+alt if exists
+inbox -> media: request post author id
+inbox -> inbox: insert/update user inbox info
+inbox -> push: request push notification reservation
+end
+@enduml
