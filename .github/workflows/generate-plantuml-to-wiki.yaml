@@ -9,6 +9,6 @@ jobs:
     - name: Render PlantUML to wiki
       uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
       with:
-        WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+        WIKI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         INPUT_DIR: 'uml'
         OUTPUT_DIR: 'uml/generated'
