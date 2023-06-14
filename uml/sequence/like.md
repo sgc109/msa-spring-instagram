@@ -1,6 +1,10 @@
 # Like sequence diagrams
 
 ## Post like flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:post-like-flow
 @startuml
 title "post like flow"
@@ -32,10 +36,15 @@ inbox -> push: request push notification reservation
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/post-like-flow.svg)
 
 ## Post unlike flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:post-unlike-flow
 @startuml
 title "post unlike flow"
@@ -66,10 +75,15 @@ inbox -> inbox: insert/update user inbox info
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/post-unlike-flow.svg)
 
 ## Comment like flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:comment-like-flow
 @startuml
 title "comment like flow"
@@ -101,10 +115,15 @@ inbox -> push: request push notification reservation
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/comment-like-flow.svg)
 
 ## Comment unlike flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:comment-unlike-flow
 @startuml
 title "comment unlike flow"
@@ -135,5 +154,6 @@ inbox -> inbox: insert/update user inbox info
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/comment-unlike-flow.svg)

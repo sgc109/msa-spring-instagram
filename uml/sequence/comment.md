@@ -1,6 +1,9 @@
 # Comment sequence diagrams
 
 ## Add comment on post flow
+<details>
+    <summary>UML</summary>
+
 ```plantuml:add-comment-on-post-flow
 @startuml
 title "add a comment on a post flow"
@@ -32,10 +35,15 @@ inbox -> push: request push notification reservation
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/add-comment-on-post-flow.svg)
 
 ## Delete comment on post flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:delete-comment-on-post-flow
 @startuml
 title "delete a comment on a post flow"
@@ -73,10 +81,15 @@ like <-- kafka: consume comment_deleted event
 like -> like: delete all like info
 @enduml
 ```
+</details>
 
 ![](/uml/generated/delete-comment-on-post-flow.svg)
 
 ## Add comment on comment flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:add-comment-on-comment-flow
 @startuml
 title "add a threaded comment flow"
@@ -110,10 +123,15 @@ inbox -> push: request push notification reservation
 end
 @enduml
 ```
+</details>
 
 ![](/uml/generated/add-comment-on-comment-flow.svg)
 
 ## Delete comment on comment flow
+
+<details>
+    <summary>UML</summary>
+
 ```plantuml:delete-comment-on-comment-flow
 @startuml
 title "delete a comment on a comment flow"
@@ -151,5 +169,6 @@ like <-- kafka: consume comment_deleted event
 like -> like: delete all like info
 @enduml
 ```
+</details>
 
 ![](/uml/generated/delete-comment-on-comment-flow.svg)
