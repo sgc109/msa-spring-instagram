@@ -1,0 +1,14 @@
+name: generate plantuml to Wiki
+on: push
+jobs:
+  generate_plantuml:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: plantuml
+    steps:
+    - name: Render PlantUML to wiki
+      uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
+      with:
+        WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+        INPUT_DIR: 'uml'
+        OUTPUT_DIR: 'uml/generated'
